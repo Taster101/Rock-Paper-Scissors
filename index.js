@@ -1,5 +1,9 @@
 
 //Get computer choice
+
+let player = 0
+let computer = 0
+let decider = 0
 function getComputerChoice (){
     let choice;
      choice = Math.floor(Math.random() * 3);
@@ -14,32 +18,53 @@ function getComputerChoice (){
 }
 // Play a round of game 
 function round(userChoice,computerChoice){ 
+    console.log(player)
 userChoice = userinput()
 computerChoice = getComputerChoice()
 if(userChoice == 'rock' && computerChoice == 'scissors' || userChoice == 'paper' && computerChoice == 'rock' || userChoice == 'scissors' && computerChoice == 'paper'){
        console.log(`you win ${userChoice} beats ${computerChoice}`)
-      return '++player'
+      decider = 1
 } else if (userChoice == computerChoice){
     console.log('tie!')
-    return round()
+    round()
+   
 } else {
     console.log( `you have lost ${computerChoice} beats ${userChoice}`) 
-    return 'player score'
+    decider = 2
 }
 }
 //Game function
 function game(){
-    let player = 0;
-    let computer = 0
-   for(let i = 0;i < 5;i++){
+   
+   for(let i = 0;i < 100;i++){
        round()
+       if(decider == 1 ){
+           
+           player++
+           
+       } else if ( decider == 2){
+           computer++
+
+       }
+    
        
+
+       if(player == 5  ){
+           console.log('Player is the Winner!')
+           reset()
+           return "tes"
+       } else if(computer == 5){
+           console.log('Computer Wins the game!')
+           reset()
+           return "best"
+       }
+    }
    }
-}
+
 ///Get user input
 function userinput(){
     let input = prompt('Rock, Paper ,Scissors ?').toLowerCase()
-    console.log(input)
+    
     if(input == 'paper' || input == 'rock' || input == 'scissors'){
         
        return input
@@ -48,6 +73,10 @@ function userinput(){
         userinput();
     }
 ;
+}
+function reset() {
+    computer = 0
+    player = 0
 }
 game()
  
