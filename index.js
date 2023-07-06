@@ -1,9 +1,21 @@
 
-//Get computer choice
+//on botton click run game with user choice of button thas was click 
+//track score until computer or player reaches 5 
 
+
+
+let btn = document.querySelectorAll('#btn')
 let player = 0
 let computer = 0
 let decider = 0
+
+btn.forEach((buttons) => {
+buttons.addEventListener('click', game)
+});
+
+//Get computer choice
+
+
 function getComputerChoice (){
     let choice;
      choice = Math.floor(Math.random() * 3);
@@ -78,5 +90,5 @@ function reset() {
     computer = 0
     player = 0
 }
-game()
+
  
