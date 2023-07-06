@@ -2,9 +2,11 @@
 //on botton click run game with user choice of button thas was click 
 //
 //track score until computer or player reaches 5 
-
-
-
+let end = document.querySelector('#end')
+let message = document.querySelector('#message')
+let compChoice = document.querySelector('#compChoice')
+let playerscore = document.querySelector('#player')
+let comp = document.querySelector('#comp')
 let btn = document.querySelectorAll('#btn')
 let player = 0
 let computer = 0
@@ -13,21 +15,23 @@ let decider = 0
 
 btn.forEach((buttons) => {
 buttons.addEventListener('click',  (e) => {
-    
+   
    
         
             round(e.target.name)
             if(decider == 1 ){   
                 player++  
+                playerscore.innerHTML = `Player score: ${player}`
             } else if ( decider == 2){
                 computer++
+                comp.innerHTML = `Computer score: ${computer}`
             }
             if(player == 5  ){
-                console.log('Player is the Winner!')
+                end.innerHTML = `Player is the Winner!'`
                 reset()
                 return "tes"
             } else if(computer == 5){
-                console.log('Computer Wins the game!')
+                end.innerHTML = `Computer is the Winner!'`
                 reset()
                 return "best"
             }
@@ -55,15 +59,16 @@ function getComputerChoice (){
 // Play a round of game 
 function round(userChoice){ 
     console.log(player)
-
+    end.innerHTML = ``
 let computerChoice = getComputerChoice()
+compChoice.innerHTML = `Computer choice:  ${computerChoice}`
 if(userChoice == 'rock' && computerChoice == 'scissors' || userChoice == 'paper' && computerChoice == 'rock' || userChoice == 'scissors' && computerChoice == 'paper'){
-       console.log(`you win ${userChoice} beats ${computerChoice}`)
+       message.innerHTML = `You won this round!`
       decider = 1
 } else if (userChoice == computerChoice){
-    console.log('tie!')
+    message.innerHTML = 'Tie!'
 } else {
-    console.log( `you have lost ${computerChoice} beats ${userChoice}`) 
+    message.innerHTML = `You have lost this round!`
     decider = 2
 }
 }
@@ -77,11 +82,11 @@ function game(){
            computer++
        }
        if(player == 5  ){
-           console.log('Player is the Winner!')
+        end.innerHTML = `Player is the Winner!'`
            reset()
            return "tes"
        } else if(computer == 5){
-           console.log('Computer Wins the game!')
+        end.innerHTML = 'Computer Wins the game!'
            reset()
            return "best"
        }
