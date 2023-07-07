@@ -109,6 +109,8 @@ function game(){
 function reset() {
     computer = 0
     player = 0
+    playerscore.innerHTML = `Player score: ${player}`
+    comp.innerHTML = `Computer score: ${computer}`
 }
 
  
